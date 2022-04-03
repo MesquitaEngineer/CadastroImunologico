@@ -6,7 +6,7 @@
 
 <script>
 function validateForm() {
-  if ($("[name='imunologico.Fabricante']")[0] != "PFIZER" && $("[name='imunologico.Fabricante']")[0] != "SINOVAC"  ) {
+  if ($("[name='imunologico.Fabricante']")[0].value != "PFIZER" && $("[name='imunologico.Fabricante']")[0].value != "SINOVAC"  ) {
     alert("Fabricante (Poderá aceitar apenas PFIZER ou SINOVAC)");
     return false;
   }
@@ -14,7 +14,7 @@ function validateForm() {
 
   const anoAnterior = new Date().getFullYear()-1;
   
-  if ($("[name='imunologico.AnoLote']")[0] >= anoAnterior) {
+  if ($("[name='imunologico.AnoLote']")[0].value < anoAnterior) {
     alert("Ano do Lote deve ser maior ou igual ao ano anterior ( "+ anoAnterior +").");
     return false;
   }
@@ -33,7 +33,7 @@ function validateForm() {
 </div>
  <div>
     @Html.DisplayNameFor(model => model.imunologico.AnoLote)
-    @Html.TextBoxFor(model => model.imunologico.AnoLote,"{{{0:D}}}")
+    @Html.TextBoxFor(model => model.imunologico.AnoLote, htmlAttributes: new{ @type="number"})
 </div>
 
 <button class="btn btn-primary btn-sx" type="submit"><i class="glyphicon glyphicon-plus"></i> Adicionar Imunológico</button>
