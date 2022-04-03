@@ -1,0 +1,61 @@
+﻿@page
+@model ImunologicosModel
+@{
+    ViewData["Title"] = "Grid de Imunologicos";
+}
+
+<h1>Imunológicos</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Id")
+            </th>
+            <th>
+               @Html.DisplayName("Fabricante")
+            </th>
+            <th>
+                @Html.DisplayName("AnoLote")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var b in Model.imunologicos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => b.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => b.Fabricante)
+                </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => b.AnoLote)
+                </td>
+                 <td>
+                    <form method="post">
+                    <span class="btn-group pull-right" style="margin-top: 5px">
+                        <a class="btn btn-warning btn-xs" asp-page="/Imunologicos/Editar" asp-route-id="@b.Id" style="background-color: blueviolet; height: 29px; margin-top: -1px;">
+                             <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+
+                        <button type="submit" class="btn btn-danger btn-xs" asp-page-handler="Delete" asp-route-id="@b.Id" style="height: 27px; margin-top: 0px;"
+                                onclick="return confirm('Deseja realmente excluir este Imunologico?');">
+                                <i class="glyphicon glyphicon-remove"></i>
+                        </button>
+                     </span>
+                    </form>
+                </td>
+            </tr>
+        }
+
+    
+    </tbody>
+</table>
+
+<p>
+        <a class="btn btn-primary btn-sx pull-left" style="margin-top:20px;margin-bottom: 20px;"  asp-page="/Imunologicos/Criar">
+                <i class="glyphicon glyphicon-plus"></i> Adicionar Novo Imunológico
+        </a>
+ </p> 
